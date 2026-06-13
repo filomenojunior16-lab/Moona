@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Aniversário, Marilca</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<canvas id="canvas"></canvas>
+<canvas id="confettiCanvas"></canvas>
+
+<section class="screen active" id="loginScreen">
+
+  <svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+    <rect x="3" y="11" width="18" height="11" rx="3"/>
+    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+  </svg>
+
+  <p class="login-eyebrow">Acesso Restrito</p>
+
+  <h1 class="login-title">
+    Feliz Aniversário,<br>
+    <em>Marilca Basílio</em>
+  </h1>
+
+  <p class="login-sub">
+    Insira o código secreto para abrir o seu presente.
+  </p>
+
+  <div class="input-wrap">
+    <input
+      type="password"
+      id="codigoInput"
+      placeholder="· · ·"
+      maxlength="10"
+      autocomplete="off"
+      inputmode="numeric"
+    />
+  </div>
+
+  <button class="btn-primary" onclick="validar()">
+    Abrir Presente
+  </button>
+
+  <p class="error-msg" id="erroMsg"></p>
+
+</section>
+
+<section class="screen" id="giftScreen">
+
+  <div class="photo-frame">
+    <img src="assets/marilca.png" alt="Marilca Basílio">
+  </div>
+
+  <p class="gift-eyebrow">13 de Junho de 2026</p>
+
+  <h2 class="gift-heading">
+    Parabéns,<br>
+    <em>Marilca Basílio</em>
+  </h2>
+
+  <div class="gift-age">24</div>
+
+  <div class="message-block">
+
+<p>
+    Quero que saibas que eu amo-te muitíssimo, mais do que as palavras conseguem expressar. E, aconteça o que acontecer, jamais deixarei de te amar. Sou teu fã e tenho um enorme orgulho da pessoa que és; a tua personalidade inspira-me e faz-me admirar-te ainda mais a cada dia.
+Independentemente do que faças ou do que venhas a fazer no futuro, o teu nigga estará sempre ao teu lado. Podes contar comigo para tudo, em qualquer momento e em qualquer circunstância, da mesma forma que eu sei que posso contar contigo.
+Obrigado por seres quem és. Amo-te hoje, amanhã e sempre. ❤️
+
+Feliz aniversário, minha gêmea, minha irmã, meu amor, minha tudoooooo! 🫶🏼❤️
+</p>
+
+    <p>
+      Hoje celebramos não apenas mais um ano de vida,
+      mas a pessoa extraordinária que és.
+    </p>
+
+    <p>
+      Que este novo ciclo seja repleto de conquistas,
+      saúde, felicidade e muito amor.
+    </p>
+
+    <span class="signature">
+      Com carinho, sempre.
+    </span>
+
+  </div>
+
+  <div class="divider">
+    <span class="divider-icon">✦</span>
+  </div>
+
+  <div class="gift-cta-area">
+    <button class="btn-gift" onclick="revelarPresente()" id="btnGift">
+      Receber Presente
+    </button>
+  </div>
+
+  <div class="image-carousel" aria-label="Carrossel de fotos">
+    <p class="carousel-label">Galeria de Fotos</p>
+    <div class="carousel-track">
+      <div class="carousel-item">
+        <img src="assets/image1.jpg" alt="Foto 1" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image2.jpg" alt="Foto 2" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image3.jpg" alt="Foto 3" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image4.jpg" alt="Foto 4" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image5.jpg" alt="Foto 5" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image6.jpg" alt="Foto 6" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image7.jpg" alt="Foto 7" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image8.jpg" alt="Foto 8" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image1.jpg" alt="Foto 1" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image2.jpg" alt="Foto 2" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image3.jpg" alt="Foto 3" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image4.jpg" alt="Foto 4" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image5.jpg" alt="Foto 5" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image6.jpg" alt="Foto 6" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image7.jpg" alt="Foto 7" loading="lazy">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/image8.jpg" alt="Foto 8" loading="lazy">
+      </div>
+    </div>
+    <p class="carousel-help">Já disse que te amo?</p>
+  </div>
+
+  <div id="voucherBlock">
+
+    <div class="voucher-card">
+
+      <p class="voucher-label">
+        Presente Digital
+      </p>
+
+      <p class="voucher-brand">
+        Carregamento Unitel
+      </p>
+
+      <div class="code-box">
+        <div class="voucher-code-row">
+          <p class="code-value">*100*2307757408507#</p>
+          <button type="button" class="copy-btn" data-code="*100*2307757408507#" onclick="copiarCodigo(this)">
+            Copiar
+          </button>
+        </div>
+        <div class="voucher-code-row">
+          <p class="code-value">*100*8012514964775#</p>
+          <button type="button" class="copy-btn" data-code="*100*8012514964775#" onclick="copiarCodigo(this)">
+            Copiar
+          </button>
+        </div>
+      </div>
+
+      <p class="voucher-note">
+        Marque este código no seu telemóvel para receber o carregamento.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

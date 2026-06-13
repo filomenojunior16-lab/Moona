@@ -1,0 +1,380 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --gold:#C9A84C;
+    --gold-lt:#E8C97A;
+    --gold-dim:rgba(201,168,76,.15);
+    --ink:#08080C;
+    --surface:#0E0E16;
+    --glass:rgba(255,255,255,.08);
+    --text:#D8D4CC;
+    --serif:'Cormorant Garamond',serif;
+    --sans:'Inter',sans-serif;
+}
+
+html{
+    font-size:16px;
+    scroll-behavior:smooth;
+}
+
+body{
+    background:radial-gradient(circle at top, rgba(201,168,76,.08), transparent 28%), var(--ink);
+    color:var(--text);
+    font-family:var(--sans);
+    min-height:100vh;
+    overflow-x:hidden;
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+#canvas,
+#confettiCanvas{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:-1;
+}
+
+.screen{
+    display:none;
+    min-height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    padding:28px 24px;
+    width:min(100%, 760px);
+    margin:0 auto;
+    gap:18px;
+}
+
+.screen.active{
+    display:flex;
+}
+
+.login-eyebrow,
+.gift-eyebrow{
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.85rem;
+    opacity:0.8;
+}
+
+.login-title{
+    font-family:var(--serif);
+    font-size:clamp(2.4rem, 6vw, 3.8rem);
+    text-align:center;
+    color:white;
+    line-height:1.05;
+}
+
+.login-title em{
+    color:var(--gold);
+}
+
+.login-sub{
+    margin:18px 0 28px;
+    text-align:center;
+    line-height:1.6;
+    max-width:420px;
+}
+
+.input-wrap{
+    width:100%;
+    max-width:320px;
+}
+
+.input-wrap input{
+    width:100%;
+    padding:16px;
+    border-radius:16px;
+    border:1px solid var(--gold);
+    background:var(--glass);
+    color:white;
+    text-align:center;
+    font-size:1.1rem;
+}
+
+.btn-primary,
+.btn-gift{
+    width:100%;
+    max-width:320px;
+    padding:16px 22px;
+    border:none;
+    border-radius:45px;
+    cursor:pointer;
+    margin-top:18px;
+    font-size:1rem;
+    transition:transform 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
+}
+
+.btn-primary{
+    background:var(--gold);
+    color:var(--ink);
+}
+
+.btn-gift{
+    background:transparent;
+    border:1px solid var(--gold);
+    color:var(--gold);
+}
+
+.btn-primary:hover,
+.btn-gift:hover,
+.copy-btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-primary:focus-visible,
+.btn-gift:focus-visible,
+.copy-btn:focus-visible{
+    outline:2px solid rgba(255,255,255,.9);
+    outline-offset:4px;
+}
+
+.photo-frame{
+    width:min(100%, 320px);
+}
+
+.photo-frame img{
+    width:100%;
+    display:block;
+    border-radius:24px;
+    object-fit:cover;
+    max-height:420px;
+    box-shadow:0 28px 70px rgba(0,0,0,.28);
+}
+
+.gift-heading{
+    text-align:center;
+    color:white;
+    margin-top:20px;
+    font-size:clamp(2rem, 6vw, 3rem);
+    line-height:1.05;
+}
+
+.gift-heading em{
+    color:var(--gold);
+}
+
+.gift-age{
+    font-size:clamp(3rem, 12vw, 5rem);
+    color:var(--gold);
+    margin:20px 0;
+}
+
+.message-block{
+    max-width:720px;
+    width:100%;
+    text-align:center;
+    line-height:1.8;
+    padding:0 10px;
+}
+
+.message-block p{
+    margin-top:1rem;
+}
+
+.signature{
+    display:block;
+    margin-top:20px;
+    color:var(--gold);
+}
+
+.divider{
+    margin:32px 0;
+    display:flex;
+    justify-content:center;
+}
+
+.divider-icon{
+    font-size:1.2rem;
+    color:var(--gold);
+}
+
+.image-carousel{
+    width:100%;
+    max-width:520px;
+    margin:32px auto 0;
+    padding:22px;
+    border-radius:24px;
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(12px);
+    overflow:hidden; /* ensure content doesn't escape the box */
+}
+
+.carousel-label{
+    margin-bottom:14px;
+    text-align:center;
+    font-size:1rem;
+    color:var(--gold);
+}
+
+.carousel-track{
+    display:flex;
+    gap:14px;
+    width: -moz-max-content;
+    width: max-content; /* ensure translation percentages refer to track width */
+    animation:carouselScroll 24s linear infinite;
+    will-change:transform;
+}
+
+.carousel-track:hover{
+    animation-play-state:paused;
+}
+
+    .carousel-item{
+        flex:0 0 auto; /* keep natural width for each item */
+        width:220px;
+        min-width:180px;
+    }
+
+.carousel-item img{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    display:block;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 16px 40px rgba(0,0,0,.18);
+}
+
+.carousel-help{
+    margin-top:12px;
+    text-align:center;
+    font-size:0.95rem;
+    opacity:0.8;
+}
+
+@keyframes carouselScroll{
+    0%{ transform:translateX(0); }
+    100%{ transform:translateX(-50%); }
+}
+
+.gift-cta-area{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+#voucherBlock{
+    display:none;
+    max-width:520px;
+    width:100%;
+    margin-top:40px;
+}
+
+.voucher-card{
+    background:var(--surface);
+    padding:28px;
+    border-radius:24px;
+    text-align:center;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 20px 60px rgba(0,0,0,.14);
+}
+
+.voucher-label,
+.voucher-brand,
+.voucher-note{
+    margin:0.5rem 0;
+}
+
+.voucher-brand{
+    font-size:1.1rem;
+    font-weight:600;
+}
+
+.code-box{
+    margin:22px 0;
+    padding:22px;
+    border:1px solid var(--gold);
+    border-radius:20px;
+    display:grid;
+    gap:14px;
+    background:rgba(255,255,255,.03);
+    backdrop-filter:blur(12px);
+}
+
+.voucher-code-row{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+}
+
+.code-value{
+    color:var(--gold);
+    font-size:1.2rem;
+    font-weight:700;
+    word-break:break-all;
+    flex:1;
+}
+
+.copy-btn{
+    padding:12px 22px;
+    border-radius:999px;
+    border:1px solid var(--gold);
+    background:transparent;
+    color:var(--gold);
+    cursor:pointer;
+    flex-shrink:0;
+    transition:transform 0.22s ease, background-color 0.22s ease, border-color 0.22s ease;
+}
+
+.error-msg{
+    margin-top:14px;
+    color:#ff7b7b;
+    text-align:center;
+    min-height:1.2rem;
+}
+
+@media (max-width: 740px) {
+    .message-block{
+        font-size:0.96rem;
+    }
+    .code-value{
+        font-size:1.1rem;
+    }
+}
+
+@media (max-width: 540px) {
+    .screen{
+        padding:22px 18px;
+    }
+
+    .login-sub,
+    .message-block{
+        font-size:0.98rem;
+    }
+
+    .btn-primary,
+    .btn-gift,
+    .copy-btn{
+        font-size:1rem;
+    }
+
+    .voucher-card{
+        padding:22px;
+    }
+
+    .code-box{
+        padding:18px;
+    }
+
+    .image-carousel{
+        margin-top:24px;
+    }
+
+    .carousel-item{
+        flex:0 0 160px;
+        min-width:140px;
+    }
+
+    .carousel-item img{
+        height:120px;
+    }
+}
